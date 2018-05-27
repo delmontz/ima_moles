@@ -1,24 +1,29 @@
 <template>
-  <!-- インジケータ類 -->
-  <div class="whackmole">
-    <div class= "logo">モグラたたき！</div>
-    <button class="game-start" v-on:click="gameStart">ゲーム開始</button>
-    <div class=counter-container>
+  <div class="whackamole">
+    <h1 class="logo">
+      Whackamole
+    </h1>
+    <button 
+      class="start-game"
+      v-on:click="gameStart"
+    >
+      Start Game
+    </button>
+    <div class="counters-container">
       <div class="counter">
-        <h1>whacks:</h1>
+        <h1>Score:</h1>
         <h2>{{ score }}</h2>
       </div>
       <div class="counter">
-        <h1>得点</h1>
+        <h1>High Score:</h1>
         <h2>{{ highScore }}</h2>
       </div>
       <div class="counter">
-        <h1>残り時間</h1>
+        <h1>Timer:</h1>
         <h2>{{ timer }}</h2>
       </div>
     </div>
-    <!-- モグラ表示 -->
-    <Moles v-bind:moleData="moles"/>
+    <Moles v-bind:moleData="moles" />
   </div>
 </template>
 
@@ -27,30 +32,33 @@ import Moles from './components/Moles';
 
 export default {
   name: 'App',
-  components: {'Moles': Moles},
-  data: () => { //お作法 コンポーネントにデータを渡すときは関数にしてreturnしないといけない
+  components: { //Moles: Moles同名省略 Molesの実体はMoles.vueのexportだよね　コンポーネント使用宣言
+    Moles
+  },
+  data: () => {
     return {
       score: 0,
-      highScore: 15,
+      highScore: 10,
       timer: 20,
-      moles: [false, false, false, false]
+      moles: [true, false, false, false]
     };
-   },
-   methods: {
-      gameStart: () => {
-         alert('hello world');
-      }
-   }
+  },
+  methods: {
+    gameStart: function() {
+      console.log('I was clicked!');
+    }
+  }
 }
 </script>
 
 <style>
-   .couter{
-      margin: 10px;
-      display: inline-block;
-   }
-   .mole{
-      margin: 10px;
-      display: inline-block;
-   }
+.counter {
+  margin: 10px;
+  display: inline-block;
+}
+
+.mole {
+  margin: 10px;
+  display: inline-block;
+}
 </style>

@@ -1,21 +1,21 @@
 <template>
-   <div class="mole-container">
-      <div class="mole">{{ moles[0] }}</div>
-      <div class="mole">{{ moles[1] }}</div>
-      <div class="mole">{{ moles[2] }}</div>
-      <div class="mole">{{ moles[3] }}</div>
-   </div>
+  <div class="moles-container">
+    <div 
+      class="mole" v-for="(moleState, index) in moleData" v-bind:key="index">
+      <Mole v-bind:state="moleState" />
+    </div>
+  </div>
 </template>
 
 <script>
+import Mole from './Mole';
+
 export default {
-   name: 'Moles',
-   data: () => {
-      return {
-         moles: [false, false, false, false]
-      };
-   },
-   props: ['moleData']
+  name: 'Moles',
+  components: {
+    Mole
+  },
+  props: ['moleData']
 }
 </script>
 
